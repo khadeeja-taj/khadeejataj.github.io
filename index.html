@@ -1,0 +1,443 @@
+<title>Khadeeja Taj</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: single-column editorial portfolio — mono eyebrows, teal signal accent, generous rhythm */
+  :root {
+    --bg: #F6F8FA;
+    --surface: #FFFFFF;
+    --fg: #14202B;
+    --muted: #576574;
+    --border: #E4E9EF;
+    --accent: #0E8F88;
+    --accent-soft: rgba(14, 143, 136, 0.10);
+    --shadow: 0 1px 2px rgba(20,32,43,.04), 0 8px 24px rgba(20,32,43,.06);
+
+    --font-display: "Syne", "Hanken Grotesk", system-ui, sans-serif;
+    --font-body: "Hanken Grotesk", system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0B1117;
+      --surface: #121B24;
+      --fg: #E7EEF4;
+      --muted: #8D9CAC;
+      --border: #22303F;
+      --accent: #2ED3C4;
+      --accent-soft: rgba(46, 211, 196, 0.12);
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0B1117;
+    --surface: #121B24;
+    --fg: #E7EEF4;
+    --muted: #8D9CAC;
+    --border: #22303F;
+    --accent: #2ED3C4;
+    --accent-soft: rgba(46, 211, 196, 0.12);
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    overflow-x: hidden;
+  }
+  /* ambient accent glow, fixed behind everything */
+  body::after {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(640px 420px at 82% -8%, var(--accent-soft), transparent 70%),
+      radial-gradient(520px 380px at -10% 12%, var(--accent-soft), transparent 72%);
+  }
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
+    padding-right: max(20px, env(safe-area-inset-right, 0px));
+  }
+  a { color: inherit; }
+  h1, h2, h3 { text-wrap: balance; margin: 0; }
+
+  /* ---- top bar ---- */
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+    padding-block: 20px;
+  }
+  .mark {
+    font-family: var(--font-display); font-weight: 800; font-size: 1.05rem;
+    letter-spacing: -0.01em; display: flex; align-items: center; gap: 9px;
+  }
+  .mark .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .topnav { display: flex; align-items: center; gap: 14px; font-size: .9rem; }
+  .topnav a { text-decoration: none; color: var(--muted); transition: color .18s; }
+  .topnav a:hover { color: var(--fg); }
+  .toggle {
+    border: 1px solid var(--border); background: var(--surface); color: var(--muted);
+    border-radius: 999px; width: 36px; height: 36px; cursor: pointer; font-size: 1rem;
+    display: grid; place-items: center; transition: color .18s, border-color .18s;
+  }
+  .toggle:hover { color: var(--fg); border-color: var(--accent); }
+
+  /* ---- hero ---- */
+  .hero { padding-block: 44px 52px; position: relative; }
+  /* oversized monogram watermark */
+  .hero::before {
+    content: "KT"; position: absolute; top: -18px; right: -6px; z-index: 0;
+    font-family: var(--font-display); font-weight: 800; font-size: clamp(7rem, 26vw, 15rem);
+    line-height: 1; letter-spacing: -0.04em; color: var(--accent);
+    opacity: .06; pointer-events: none; user-select: none;
+  }
+  .hero > * { position: relative; z-index: 1; }
+  .eyebrow {
+    font-family: var(--font-mono); font-size: .76rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--accent); display: inline-block; }
+  .hero h1 {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(2.6rem, 9vw, 4.4rem); line-height: 1.02; letter-spacing: -0.025em;
+  }
+  .hero h1 .grad {
+    background: linear-gradient(104deg, var(--accent), var(--fg) 86%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .hero .lede {
+    margin-top: 22px; font-size: clamp(1.05rem, 2.6vw, 1.3rem); color: var(--muted);
+    max-width: 44ch; line-height: 1.5;
+  }
+  .hero .lede strong { color: var(--fg); font-weight: 600; }
+  .cta-row { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn {
+    font-family: var(--font-body); font-weight: 600; font-size: .95rem;
+    text-decoration: none; padding: 11px 20px; border-radius: 10px;
+    display: inline-flex; align-items: center; gap: 8px; transition: transform .15s, box-shadow .15s, background .15s;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  :root[data-theme="dark"] .btn-primary, :root:not([data-theme="light"]) .btn-primary { color: #05221f; }
+  @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .btn-primary { color: #fff; } }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .btn-ghost { background: var(--surface); border: 1px solid var(--border); color: var(--fg); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .status {
+    font-family: var(--font-mono); font-size: .76rem; color: var(--muted);
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--border); border-radius: 999px; padding: 7px 14px 7px 12px;
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+  }
+  .status .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); position: relative; }
+  .status .pulse::after { content:""; position:absolute; inset:-5px; border-radius:50%; border:1px solid var(--accent); opacity:.5; animation: pulse 2.4s ease-out infinite; }
+  @keyframes pulse { to { transform: scale(2.1); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .status .pulse::after { animation: none; } }
+
+  /* ---- section ---- */
+  section { padding-block: 34px; border-top: 1px solid var(--border); }
+  .sec-head { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+  .sec-num {
+    font-family: var(--font-mono); font-size: .72rem; color: var(--accent);
+    border: 1px solid var(--accent); border-radius: 7px; padding: 3px 8px;
+    background: var(--accent-soft);
+  }
+  .sec-head h2 { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; letter-spacing: -0.01em; }
+
+  .about p { font-size: 1.08rem; max-width: 62ch; margin: 0 0 14px; }
+  .about p:last-child { margin-bottom: 0; }
+
+  /* ---- skills ---- */
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .skill-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px 20px; min-width: 0; }
+  .skill-card h3 { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; font-weight: 500; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-size: .85rem; padding: 5px 11px; border-radius: 8px;
+    background: var(--accent-soft); color: var(--accent); font-weight: 500;
+  }
+  .chip.plain { background: transparent; color: var(--fg); border: 1px solid var(--border); }
+
+  /* ---- projects ---- */
+  .projects { display: flex; flex-direction: column; gap: 18px; }
+  .project {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 24px; transition: transform .18s, box-shadow .18s, border-color .18s; min-width: 0;
+    position: relative; overflow: hidden;
+  }
+  .project::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: var(--accent); transform: scaleY(0); transform-origin: top;
+    transition: transform .22s ease;
+  }
+  .project:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--accent); }
+  .project:hover::before { transform: scaleY(1); }
+  .project .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+  .project h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.22rem; letter-spacing: -0.01em; }
+  .project .meta { font-family: var(--font-mono); font-size: .74rem; color: var(--muted); white-space: nowrap; }
+  .project p { color: var(--muted); margin: 12px 0 16px; font-size: .98rem; max-width: 64ch; }
+  .project .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 16px; }
+  .tag { font-family: var(--font-mono); font-size: .72rem; color: var(--muted); border: 1px solid var(--border); border-radius: 6px; padding: 3px 8px; }
+  .project .links { display: flex; flex-wrap: wrap; gap: 16px; font-size: .9rem; font-weight: 600; }
+  .project .links a { color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+  .project .links a:hover { text-decoration: underline; }
+  .project .links .arrow { transition: transform .15s; }
+  .project .links a:hover .arrow { transform: translate(2px,-2px); }
+
+  /* ---- timeline ---- */
+  .timeline { display: flex; flex-direction: column; }
+  .entry { display: grid; grid-template-columns: 148px 1fr; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+  .entry:last-child { border-bottom: none; }
+  .entry .when { font-family: var(--font-mono); font-size: .78rem; color: var(--muted); padding-top: 3px; }
+  .entry .role { font-weight: 700; font-size: 1.02rem; }
+  .entry .org { color: var(--accent); font-size: .95rem; margin-top: 1px; font-weight: 500; }
+  .entry .desc { color: var(--muted); font-size: .92rem; margin-top: 7px; max-width: 60ch; }
+
+  /* ---- education / certs ---- */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; min-width: 0; }
+  .panel h3 { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; font-weight: 500; }
+  .item + .item { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .item .t { font-weight: 600; font-size: .98rem; }
+  .item .s { color: var(--muted); font-size: .88rem; margin-top: 2px; }
+  .item .d { font-family: var(--font-mono); font-size: .74rem; color: var(--accent); margin-top: 4px; }
+
+  /* ---- contact ---- */
+  .contact { text-align: center; padding-block: 46px 54px; border-top: 1px solid var(--border); }
+  .contact h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.8rem, 6vw, 2.6rem); letter-spacing: -0.02em; }
+  .contact p { color: var(--muted); margin: 14px auto 26px; max-width: 42ch; }
+  .mailrow { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 10px 10px 18px; }
+  .mailrow .addr { font-family: var(--font-mono); font-size: .92rem; }
+  .copybtn { border: 1px solid var(--border); background: var(--bg); color: var(--muted); border-radius: 8px;
+    padding: 7px 13px; cursor: pointer; font-size: .82rem; font-weight: 600; transition: all .15s; font-family: var(--font-body); }
+  .copybtn:hover { color: var(--accent); border-color: var(--accent); }
+  .social { margin-top: 24px; display: flex; gap: 20px; justify-content: center; font-size: .92rem; }
+  .social a { color: var(--muted); text-decoration: none; font-weight: 500; }
+  .social a:hover { color: var(--accent); }
+  footer { text-align: center; color: var(--muted); font-size: .78rem; font-family: var(--font-mono); padding-bottom: 30px; }
+
+  @media (max-width: 560px) {
+    .skills-grid, .two-col { grid-template-columns: 1fr; }
+    .entry { grid-template-columns: 1fr; gap: 4px; }
+    .entry .when { padding-top: 0; }
+  }
+</style>
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="mark"><span class="dot"></span>Khadeeja&nbsp;Taj</div>
+    <nav class="topnav">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button class="toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light / dark">◐</button>
+    </nav>
+  </div>
+
+  <header class="hero">
+    <div class="eyebrow">Computer Science · Islamabad, PK</div>
+    <h1>Building web &amp;<br><span class="grad">AI-powered products.</span></h1>
+    <p class="lede">I'm a <strong>Computer Science student at IIUI</strong> who turns ideas into working web apps — from full front-end platforms to <strong>generative &amp; agentic AI</strong> tools.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#work">View my work</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/khadeeja-taj-099bb5301/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <span class="status"><span class="pulse"></span>Open to opportunities</span>
+    </div>
+  </header>
+
+  <section id="about" class="about">
+    <div class="sec-head"><span class="sec-num">01</span><h2>About</h2></div>
+    <p>I'm pursuing my Bachelor's in Computer Science at the International Islamic University, Islamabad (graduating 2027), with a strong focus on programming and web development. I work across C++, JavaScript, HTML, CSS, and Python.</p>
+    <p>Lately I've been building generative and agentic AI applications — shipping real, team-built projects and learning by making things that work. Alongside development, I take on operations and community roles, so I'm comfortable owning both the code and the delivery.</p>
+  </section>
+
+  <section id="work">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Selected Work</h2></div>
+    <div class="projects">
+
+      <article class="project">
+        <div class="top">
+          <h3>HaqFlow</h3>
+          <span class="meta">AI Agent · 2026</span>
+        </div>
+        <p>An AI-powered social-support navigator that helps people understand their situation, discover relevant assistance programs, identify required documents, and follow a personalized, step-by-step action plan. Built during the Pak Angels Generative &amp; Agentic AI Program.</p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Generative AI</span><span class="tag">RAG</span><span class="tag">Agentic Workflows</span>
+        </div>
+        <div class="links">
+          <a href="https://haqflow-frontend-blue.vercel.app" target="_blank" rel="noopener">Live demo <span class="arrow">↗</span></a>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="top">
+          <h3>Supreme Student Advisory Council</h3>
+          <span class="meta">Web Platform · 2026</span>
+        </div>
+        <p>A live web platform for IIUI's Supreme Student Advisory Council — handling student registration, faculty representation, council information, news, competitions, and administrative management. Designed and shipped the front-end interface with a teammate.</p>
+        <div class="tags">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Responsive</span><span class="tag">GitHub</span>
+        </div>
+        <div class="links">
+          <a href="https://supreme-student-advisory-council.netlify.app" target="_blank" rel="noopener">Live site <span class="arrow">↗</span></a>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="top">
+          <h3>Rehnuma</h3>
+          <span class="meta">AI Web App · 2026</span>
+        </div>
+        <p>A collaborative, web-based AI solution built during the Pak Angels program — focused on practical functionality, user experience, and applying modern generative-AI concepts to a real use case.</p>
+        <div class="tags">
+          <span class="tag">Generative AI</span><span class="tag">Web Development</span><span class="tag">Team Project</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Skills &amp; Tools</h2></div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Languages</h3>
+        <div class="chips"><span class="chip">C++</span><span class="chip">JavaScript</span><span class="chip">Python</span><span class="chip">HTML</span><span class="chip">CSS</span></div>
+      </div>
+      <div class="skill-card">
+        <h3>Web</h3>
+        <div class="chips"><span class="chip">Front-End Dev</span><span class="chip">Responsive Design</span><span class="chip">GitHub</span></div>
+      </div>
+      <div class="skill-card">
+        <h3>AI / ML</h3>
+        <div class="chips"><span class="chip">Generative AI</span><span class="chip">Agentic AI</span><span class="chip">RAG</span></div>
+      </div>
+      <div class="skill-card">
+        <h3>Also</h3>
+        <div class="chips"><span class="chip plain">Graphic Design</span><span class="chip plain">Microsoft Excel</span><span class="chip plain">Content Management</span><span class="chip plain">Teamwork</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Experience</h2></div>
+    <div class="timeline">
+      <div class="entry">
+        <div class="when">Sep 2026 — Present</div>
+        <div><div class="role">Web Development Intern</div><div class="org">International Islamic University, Islamabad</div><div class="desc">Designing and building web platforms for the university, including the Supreme Student Advisory Council site.</div></div>
+      </div>
+      <div class="entry">
+        <div class="when">Sep 2026 — Present</div>
+        <div><div class="role">Digital Media &amp; Web Support Volunteer</div><div class="org">Dar Muneera, IIUI</div><div class="desc">Managing website content, designing graphics, and maintaining data to support institutional communication.</div></div>
+      </div>
+      <div class="entry">
+        <div class="when">Oct 2026 — Present</div>
+        <div><div class="role">Operations Manager (Nationwide)</div><div class="org">Artificial Intelligence Community of Pakistan</div><div class="desc">Coordinating ambassador activities and strengthening nationwide operations for the AICP Learn program.</div></div>
+      </div>
+      <div class="entry">
+        <div class="when">Sep 2026 — Present</div>
+        <div><div class="role">Brand Ambassador</div><div class="org">DataCrumbs</div><div class="desc">Representing DataCrumbs through the ChangeMakers Program, promoting initiatives and building community.</div></div>
+      </div>
+      <div class="entry">
+        <div class="when">2025</div>
+        <div><div class="role">HR Intern</div><div class="org">Women Fortune Tech</div><div class="desc">Supported HR activities at an organization dedicated to empowering women in tech.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Education &amp; Certifications</h2></div>
+    <div class="two-col">
+      <div class="panel">
+        <h3>Education</h3>
+        <div class="item">
+          <div class="t">BS Computer Science</div>
+          <div class="s">International Islamic University, Islamabad</div>
+          <div class="d">2023 — 2027 (Expected)</div>
+        </div>
+        <div class="item">
+          <div class="t">FSc Pre-Medical</div>
+          <div class="s">Quaid-e-Azam Group of Schools &amp; Colleges, Swabi</div>
+          <div class="d">2021 — 2023</div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Certifications</h3>
+        <div class="item">
+          <div class="t">Generative &amp; Agentic AI Application Developer</div>
+          <div class="s">Pak Angels — Cohort 11</div>
+          <div class="d">Oct 2026</div>
+        </div>
+        <div class="item">
+          <div class="t">Fundamentals of Python</div>
+          <div class="s">Multiomics Global Research Community</div>
+          <div class="d">Aug 2025</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Let's build something.</h2>
+    <p>Open to internships, collaborations, and mentorships in web and AI development.</p>
+    <div class="mailrow">
+      <span class="addr" id="email">khadijataj116@gmail.com</span>
+      <button class="copybtn" id="copyBtn">Copy</button>
+    </div>
+    <div class="social">
+      <a href="https://www.linkedin.com/in/khadeeja-taj-099bb5301/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://haqflow-frontend-blue.vercel.app" target="_blank" rel="noopener">HaqFlow ↗</a>
+    </div>
+  </section>
+
+  <footer>Designed &amp; built by Khadeeja Taj · 2026</footer>
+</div>
+
+<script>
+  // Theme toggle — per-viewer convenience, falls back silently
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('themeToggle');
+    var stored;
+    try { stored = localStorage.getItem('kt-theme'); } catch (e) {}
+    if (stored === 'dark' || stored === 'light') root.setAttribute('data-theme', stored);
+
+    function current() {
+      var set = root.getAttribute('data-theme');
+      if (set) return set;
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    btn.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('kt-theme', next); } catch (e) {}
+    });
+  })();
+
+  // Copy email
+  (function () {
+    var btn = document.getElementById('copyBtn');
+    var email = document.getElementById('email').textContent.trim();
+    btn.addEventListener('click', function () {
+      function done() { var o = btn.textContent; btn.textContent = 'Copied ✓'; setTimeout(function () { btn.textContent = o; }, 1600); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(done).catch(select);
+      } else { select(); }
+      function select() {
+        var r = document.createRange(); r.selectNode(document.getElementById('email'));
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); done();
+      }
+    });
+  })();
+</script>
